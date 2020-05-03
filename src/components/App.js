@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
+import Game from './Game';
 
-export default function App({ initialData }) {
-  const [count, setCount] = useState(0);
-  return (
-    <div>
-      <h1>{initialData.appName}</h1>
-      This is a sample stateful and server-side rendered React application.
-      <br />
-      <br />
-      Here is a button that will track how many times you click it:
-      <br />
-      <br />
-      <button title="increment" onClick={() => setCount(count + 1)}>
-        {count}
-      </button>
-    </div>
-  );
+// STAR MATCH - V7
+const StarMatch = () => {
+  const [gameId, setGameId] = useState(1);
+  // When the gameId increases by 1 when the play again button gets clicked the game will be reset with a new gameId and state which will unmount the current game component which also cleans up any side effects brought on by useEffects() and will introduce a new stae/gameId/component. All the state elemnts will be brand new because we are mounting a new game
+  return <Game key={gameId} startNewGame={() => setGameId(gameId + 1)} />
 }
+
+export default StarMatch;
